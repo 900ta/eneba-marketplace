@@ -1,3 +1,4 @@
+import { apiFetch } from './api';
 
 import { useState, type FormEvent } from 'react'
 
@@ -49,7 +50,7 @@ function AuthModal({ onClose, onSuccess }: AuthModalProps) {
         payload.password_confirmation = confirmation
       }
 
-      const response = await fetch(endpoint, {
+      const response = await apiFetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

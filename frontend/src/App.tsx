@@ -1,3 +1,4 @@
+import { apiFetch } from './api';
 import { useEffect, useState, type FormEvent } from 'react'
 import './App.css'
 import AuthModal from './AuthModal'
@@ -257,7 +258,7 @@ function App() {
 
     const restoreSession = async () => {
       try {
-        const response = await fetch('/api/user', {
+        const response = await apiFetch('/api/user', {
           headers: {
             Accept: 'application/json',
             Authorization: `Bearer ${token}`,
@@ -296,7 +297,7 @@ function App() {
 
     try {
       if (token) {
-        const response = await fetch('/api/logout', {
+        const response = await apiFetch('/api/logout', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -325,7 +326,7 @@ function App() {
   useEffect(() => {
     const loadHomepage = async () => {
       try {
-        const response = await fetch('/api/homepage')
+        const response = await apiFetch('/api/homepage')
 
         if (!response.ok) throw new Error('Could not load homepage.')
 
@@ -358,7 +359,7 @@ function App() {
           if (value) params.set(key, value)
         })
 
-        const response = await fetch(`/api/products?${params.toString()}`, {
+        const response = await apiFetch(`/api/products?${params.toString()}`, {
           signal: controller.signal,
         })
 
@@ -399,7 +400,7 @@ function App() {
       setError('')
 
       try {
-        const response = await fetch('/api/orders', {
+        const response = await apiFetch('/api/orders', {
           signal: controller.signal,
           headers: {
             Accept: 'application/json',
@@ -455,7 +456,7 @@ function App() {
     setNotice('')
 
     try {
-      const response = await fetch(
+      const response = await apiFetch(
         `/api/search?q=${encodeURIComponent(term)}`,
       )
       const result = await response.json()
@@ -482,7 +483,7 @@ function App() {
     setNotice('')
 
     try {
-      const response = await fetch(
+      const response = await apiFetch(
         `/api/products/${encodeURIComponent(slug)}`,
       )
       const result = await response.json()
@@ -547,7 +548,7 @@ function App() {
     setNotice('')
 
     try {
-      const response = await fetch('/api/checkout', {
+      const response = await apiFetch('/api/checkout', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -609,7 +610,7 @@ function App() {
     setError('')
 
     try {
-      const response = await fetch(
+      const response = await apiFetch(
         `/api/orders/${encodeURIComponent(orderNumber)}`,
         {
           headers: {

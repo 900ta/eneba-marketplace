@@ -1,0 +1,10 @@
+.git
+.env
+.env.*
+!.env.example
+.neon
+vendor/
+node_modules/
+database/*.sqlite*
+tests/
+.phpunit.cache/
