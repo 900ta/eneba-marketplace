@@ -1,0 +1,13 @@
+# Local environment files and Neon context
+.env
+.env.*
+!.env.example
+.neon
+
+# Dependencies and build output
+node_modules/
+vendor/
+dist/
+
+# macOS
+.DS_Store
